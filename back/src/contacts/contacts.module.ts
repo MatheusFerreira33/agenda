@@ -13,15 +13,11 @@ import { checkEmailContactsExist } from 'src/middlewares/contacts.middlewares';
 export class ContactsModule implements NestModule {
   configure(consumer:MiddlewareConsumer){
     consumer
-    .apply(CheckToken)
+    .apply(CheckToken,checkEmailContactsExist)
     .forRoutes({path:'auth/contacts', method:RequestMethod.POST},
     {path:'auth/contacts', method:RequestMethod.GET},
     {path:'auth/contacts/:id', method:RequestMethod.GET},
     {path:'auth/contacts/:id', method:RequestMethod.PATCH},
     {path:'auth/contacts/:id', method:RequestMethod.DELETE},)
-    
-    .apply(checkEmailContactsExist)
-    .forRoutes({path:'auth/contacts', method:RequestMethod.POST},
-    {path:'auth/contacts/:id', method:RequestMethod.PATCH})
   }
 }
