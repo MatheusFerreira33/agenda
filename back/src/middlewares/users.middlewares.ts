@@ -10,13 +10,13 @@ export class checkEmailExist implements NestMiddleware{
 
     async use(req: Request, res: Response, next:NextFunction) {
         const {email}: CreateUserDto = req.body;
-
+        
         const findEmail = await this.prisma.user.count({
             where:{
                 email:email
             }
         })
-
+        
         if (findEmail){
             throw new ConflictException('email already exists');
         }
