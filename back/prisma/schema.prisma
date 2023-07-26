@@ -22,7 +22,7 @@ model contacts{
   full_name String   @db.VarChar(45)
   email     String   @unique(map: "email_UNIQUE") @db.VarChar(45)
   telefone  Int
-  user user @relation(fields: [userId], references: [id])
+  user user @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int
   createdAt DateTime @default(now()) @db.Timestamp(0)
 }

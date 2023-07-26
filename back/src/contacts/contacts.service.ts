@@ -57,11 +57,53 @@ export class ContactsService {
     return contact
   }
 
-  update(id: number, updateContactDto: UpdateContactDto) {
-    return `This action updates a #${id} contact`;
+  async update(idContact:number, idUser:number, updateContactDto: UpdateContactDto) {
+
+    const checkIdUserAssoctionContacts = await this.prisma.contacts.findFirst({
+      where:{
+        id:idContact,
+        userId:idUser
+      }
+    })
+
+    if(!checkIdUserAssoctionContacts){
+        throw new NotFoundException('Contact not found in your contact list');
+    }
+
+    const contactUpdate = await this.prisma.contacts.update({
+      where:{
+        id:idContact,
+      },
+      data:updateContactDto,
+      select:{
+        id:true,
+        full_name:true,
+        email:true,
+        telefone:true,
+        createdAt:true
+      }
+    })
+
+    return contactUpdate
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} contact`;
+  async remove(id: number, idUser:number) {
+
+    const checkIdUserAssoctionContacts = await this.prisma.contacts.findFirst({
+      where:{
+        id:id,
+        userId:idUser
+      }
+    })
+
+    if(!checkIdUserAssoctionContacts){
+        throw new NotFoundException('Contact not found in your contact list');
+    }
+
+    await this.prisma.contacts.delete({
+      where:{
+        id:id
+      }
+    })
   }
 }

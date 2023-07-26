@@ -8,16 +8,20 @@ export class checkEmailContactsExist implements NestMiddleware{
 
     async use(req: Request, res: Response, next:NextFunction) {
     const{email}:CreateContactsDto = req.body;
-    
-    const findEmail = await this.prisma.contacts.count({
-        where:{
-            email:email
-        }
-    })
 
-    if(findEmail){
-        throw new ConflictException('Email already exists in a contact');
+    if(email){
+        const findEmail = await this.prisma.contacts.findFirst({
+            where:{
+                email:email
+            }
+        })
+    
+        if(findEmail){
+            throw new ConflictException('Email already exists in a contact');
+        }
     }
+
     next();
+    
 }
 }

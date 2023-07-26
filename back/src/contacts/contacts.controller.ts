@@ -26,13 +26,16 @@ export class ContactsController {
     return res.json(result);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateContactDto: UpdateContactDto) {
-    return this.contactsService.update(+id, updateContactDto);
+  @Patch('contacts/:id')
+  async update(@Param('id') id: string, @Body() updateContactDto: UpdateContactDto, @Res() res:Response) {
+    const result = await this.contactsService.update(parseInt(id), parseInt(res.locals.data.sub), updateContactDto);
+    return res.json(result);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.contactsService.remove(+id);
+  @Delete('contacts/:id')
+  async remove(@Param('id') id: string, @Res() res:Response) {
+    await this.contactsService.remove(parseInt(id), parseInt(res.locals.data.sub));
+
+    return res.status(204).send()
   }
 }
