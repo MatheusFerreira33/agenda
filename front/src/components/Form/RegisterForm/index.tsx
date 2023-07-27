@@ -1,5 +1,5 @@
 import {StyledFormRegister } from './style';
-import {Input} from '../Input/index';
+import {Input} from '../Inputs/InputRegister/index';
 import * as yup from 'yup';
 import { useContext } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
