@@ -16,8 +16,14 @@ export interface iInputs {
     telefone: number;
 }
 
+export interface iInputsLogin{
+    email:string,
+    password:string
+}
+
 interface iUserContext{
     getDatasFormRegister: (datas: iInputs) => void;
+    getDatasFormLogin: (datas: iInputsLogin) => void;
 }
 
 export const UserContext = createContext({} as iUserContext);
@@ -40,9 +46,22 @@ export const UserProvider = ({children}:typeChildren)=>{
 
     }
 
+    const getDatasFormLogin: SubmitHandler<iInputsLogin> = async(datas)=>{
+        try {
+            const response = await api.post('auth/login', datas);
+            toast.success('Login feito com sucesso');
+            localStorage.setItem('token', JSON.stringify(response.data.token));
+            //setTimeout(() => { navigate('/') }, 2000);
+            
+        } catch (error) {
+            const currentError = error as AxiosError;
+            toast.error('Email ou senha incorretos');
+        }
+    }
+
 
     return(
-        <UserContext.Provider value={{getDatasFormRegister}}>
+        <UserContext.Provider value={{getDatasFormRegister, getDatasFormLogin}}>
             {children}
         </UserContext.Provider>
     )

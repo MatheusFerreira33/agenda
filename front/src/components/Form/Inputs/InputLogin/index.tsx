@@ -3,17 +3,16 @@ import {InputStyled, FieldsetStyled} from './style';
 import { ReactNode } from 'react';
 
 
-interface IFormValues {
-    full_name: string;
+export interface IFormLogin {
     email: string;
     password: string;
-    telefone: number;
   }
 
+
 interface iNameInputs {
-    nameInput: Path<IFormValues>;
+    nameInput: Path<IFormLogin>;
     type: string;
-    register: UseFormRegister<IFormValues>
+    register: UseFormRegister<IFormLogin>,
     error: ReactNode;
 }
   
