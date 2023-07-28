@@ -1,4 +1,11 @@
-.{
+.cd{
     display: flex;
-    justify-content: top;
+    justify-content: space-evenly; 
+    cursor: pointer;
+    font-style: none;
 }
+
+li a {
+    list-style: none;
+    
+  }
