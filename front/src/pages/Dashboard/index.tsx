@@ -6,7 +6,7 @@ export const DashBoard = ()=>{
     return(
         <>
           <Header/>
-          <Outlet />  
+          <Outlet />
         </>
     )
 }
