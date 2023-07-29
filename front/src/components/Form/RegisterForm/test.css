@@ -1,11 +1,17 @@
 .cd{
     display: flex;
-    justify-content: space-evenly; 
+    justify-content: space-around; 
     cursor: pointer;
     font-style: none;
+    background: red;
+    height: 200px;
+    align-items: flex-start;
+    display: inline-flex;
+    justify-content: left;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 15px;
+    margin: auto;
+    position: relative;
+    border-radius: 25px;
+    right: 0px;
 }
-
-li a {
-    list-style: none;
-    
-  }
