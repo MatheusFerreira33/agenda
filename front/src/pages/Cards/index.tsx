@@ -29,7 +29,7 @@ export const Cards = ()=>{
     const {contacts,setModal,modal,getDatasFormContactsUpdate,getContactById,contactsUpdate,setContactsUpdate, deleteContact} = useContext(UserContext);
     const [contactsUpdate2, setContactsUpdate2] = useState<CardContacts>(Object);
 
-   
+    
 
     const schema = yup.object().shape({
         full_name: yup.string().optional(),
