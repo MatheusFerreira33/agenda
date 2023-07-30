@@ -49,3 +49,6 @@ Acesse a aplicação:
 O projeto frontend estará sendo executado em http://localhost:5173/. Abra o seu navegador e digite esse endereço na barra de URL para acessar a aplicação.
 
 Pronto! O projeto está configurado e rodando. Mantenha ambos os terminais abertos enquanto estiver usando a aplicação. Lembre-se de não fechar os terminais para que os servidores do backend e do frontend permaneçam em execução durante o desenvolvimento.
+
+
+No projeto tem um arquivo Insomnia onde contem todas as rotas.
