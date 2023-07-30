@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { useContext, useEffect, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { iUser, iUserUpdate } from '../../../providers/UserContext';
+import { iUser } from '../../../providers/UserContext';
 import {UserContext} from '../../../providers/UserContext/index';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";

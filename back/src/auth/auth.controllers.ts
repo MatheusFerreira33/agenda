@@ -2,7 +2,7 @@ import { Body, Controller, Post, NotFoundException, Get, Res, Patch, Delete } fr
 import  {LoginDto} from './dto/login.dto';
 import { PrismaService } from "src/prisma/prisma.service";
 import {AuthService} from './auth.service';
-import {Request, Response} from 'express';
+import { Response} from 'express';
 import { UpdateUserDto } from "./dto/update-user.dto";
 
 @Controller('auth')
