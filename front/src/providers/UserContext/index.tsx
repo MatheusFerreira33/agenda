@@ -17,6 +17,21 @@ export interface iInputs {
     telefone: number;
 }
 
+export interface iUser{
+    id:number;
+    full_name: string;
+    email: string;
+    telefone: number | string;
+    createdAt:string;
+}
+
+export interface iUserUpdate{
+    full_name: string | undefined;
+    email: string | undefined;
+    password:string | undefined;
+    telefone: number| string | undefined;
+}
+
 export interface iInputsFormContacts {
     full_name: string;
     email: string;
@@ -47,6 +62,7 @@ interface iUserContext{
     getDatasFormLogin: (datas: iInputsLogin) => void;
     getDatasFormContacts:(datas: iInputsFormContacts) => void;
     contacts:Array<CardContacts>;
+    userUpdate:iUserUpdate;
     contactsUpdate: CardContacts;
     setContactsUpdate: React.Dispatch<React.SetStateAction<CardContacts>>;
     modal: boolean;
@@ -54,6 +70,9 @@ interface iUserContext{
     getDatasFormContactsUpdate: (datas: iInputsFormContactsUpdate, idContact:number) => void;
     getContactById: (id: number) => void;
     deleteContact:(id: number) => void;
+    updateuser:(datas:iUserUpdate) => void;
+    deleteUser:()=>void;
+    logout:()=>void;
 }
 
 export const UserContext = createContext({} as iUserContext);
@@ -64,6 +83,7 @@ export const UserProvider = ({children}:typeChildren)=>{
     const [modal, setModal] = useState<boolean>(false);
     const [contacts, setContacts] = useState(Array<CardContacts>);
     const [contactsUpdate, setContactsUpdate] = useState<CardContacts>(Object);
+    const [userUpdate,setUserUpdate] = useState<iUserUpdate>(Object);
 
     const navigate = useNavigate();
 
@@ -207,10 +227,87 @@ export const UserProvider = ({children}:typeChildren)=>{
         })
     }
 
+    const updateuser = async(datas:iUserUpdate)=>{
+        const token = JSON.parse(localStorage.getItem('token') || "");
+
+        const oldDatasUser = await api.get('auth/user',{
+            headers:{
+                Authorization:`Bearer ${token}`
+            }
+        })
+
+        if(datas.password){
+            const newDatas = {
+                full_name:datas.full_name || oldDatasUser.data.full_name,
+                email:datas.email || oldDatasUser.data.email,
+                password:datas.password,
+                telefone:datas.telefone || oldDatasUser.data.telefone
+            }
+            
+            try {
+                const response = await api.patch('auth/user',newDatas,{
+                    headers:{
+                        Authorization:`Bearer ${token}` 
+                        }
+                    })
+
+                    setUserUpdate(response.data);
+                    toast.success('Contato atualizado com sucesso');
+                    setTimeout(() => { navigate('/')}, 1000);
+
+            } catch (error) {
+                    const currentError = error as AxiosError;
+                    toast.error('Email ja esta em outro contato');
+            }
+        }else{
+
+                const newDatas = {
+                    full_name:datas.full_name || oldDatasUser.data.full_name,
+                    email:datas.email || oldDatasUser.data.email,
+                    telefone:datas.telefone || oldDatasUser.data.telefone
+                }
+                
+                try {
+                    const response = await api.patch('auth/user',newDatas,{
+                        headers:{
+                            Authorization:`Bearer ${token}` 
+                            }
+                        })
+            
+                        setUserUpdate(response.data);
+                        toast.success('Contato atualizado com sucesso');
+                        setTimeout(() => { navigate('/dashboard')}, 1000);
+    
+                } catch (error) {
+                        const currentError = error as AxiosError;
+                        toast.error('Email ja esta em outro contato');
+                }
+            
+        }
+    }
+
+    const deleteUser = async()=>{
+        const token = JSON.parse(localStorage.getItem('token') || "");
+
+         await api.delete('auth/user',{
+            headers:{
+                Authorization:`Bearer ${token}` 
+            }
+         })
+         toast.success('Seu perfil foi excluido');
+         setTimeout(() => { navigate('/')}, 1000);
+         localStorage.clear();
+    }
+
+    const logout = ()=>{
+        localStorage.clear();
+        setTimeout(() => { navigate('/')}, 1000);
+    }
+
 
 
     return(
-        <UserContext.Provider value={{getDatasFormRegister, getDatasFormLogin,getDatasFormContacts,contacts,modal,setModal, getDatasFormContactsUpdate,getContactById,contactsUpdate,setContactsUpdate,deleteContact}}>
+        <UserContext.Provider value={{getDatasFormRegister, getDatasFormLogin,getDatasFormContacts,contacts,modal,setModal, getDatasFormContactsUpdate,getContactById,contactsUpdate,setContactsUpdate,deleteContact,updateuser,userUpdate,deleteUser,logout}}>
             {children}
         </UserContext.Provider>
     )

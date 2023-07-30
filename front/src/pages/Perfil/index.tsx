@@ -1,9 +1,9 @@
-
+import {UpdateUserForm} from '../../components/Form/UpdateUserForm';
 
 export const Perfil = ()=>{
     return(
         <>
-            <h1>Perfil</h1>
+            <UpdateUserForm/>
         </>
     )
 }

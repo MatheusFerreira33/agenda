@@ -7,25 +7,26 @@ interface IFormValues {
     full_name: string;
     email: string;
     password: string;
-    telefone: number;
+    telefone: number | string;
   }
 
 
 interface iNameInputs {
     nameInput: Path<IFormValues>;
     type: string;
-    register: UseFormRegister<IFormValues>,
+    register: UseFormRegister<any>,
+    value?:string | number,
     error: ReactNode;
     defaultValue?:string | number;
 }
   
 
 
-export const Input = ({type,  register,defaultValue, nameInput, error}:iNameInputs)=>{
+export const Input = ({type,  register,defaultValue, nameInput, value, error}:iNameInputs)=>{
 
     return(
         <FieldsetStyled>
-            <InputStyled type={type} defaultValue={defaultValue} {...register(nameInput)}/>
+            <InputStyled type={type} defaultValue={defaultValue} value={value} {...register(nameInput)}/>
         </FieldsetStyled>
     )
 }
