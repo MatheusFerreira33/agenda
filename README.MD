@@ -35,7 +35,8 @@ C. Execute as migrações do banco de dados usando o seguinte comando:
 npx prisma migrate dev
 Após a execução desse comando, aparecerá a seguinte mensagem: "Enter a name for the new migration: ". Você pode digitar qualquer coisa.
 
-D. Após as migrações serem concluídas, inicie o servidor do backend usando o seguinte comando:
+D. Após as migrações serem concluídas, execute esse outro comando:
+"npx prisma generate", depois inicie o servidor do backend usando o seguinte comando:
 
 npm run dev
 Mantenha o terminal aberto para que o servidor do backend continue em execução.
