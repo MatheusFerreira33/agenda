@@ -19,7 +19,7 @@ export const RegisterForm = () =>{
         full_name: yup.string().required('Nome Obrigatorio'),
         email: yup.string().required('Email obrigatorio').email('Email invalido'),
         password: yup.string().required('Senha obrigatoria'),
-        telefone: yup.number().required('telefone obrigatorio')
+        telefone: yup.string().required('telefone obrigatorio')
       })
     
     

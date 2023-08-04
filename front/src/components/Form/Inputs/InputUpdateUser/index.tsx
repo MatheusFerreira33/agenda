@@ -7,7 +7,7 @@ interface IFormValues {
     full_name: string;
     email: string;
     password: string;
-    telefone: number | string;
+    telefone: string;
   }
 
 

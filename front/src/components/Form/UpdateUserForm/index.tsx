@@ -19,7 +19,7 @@ export const UpdateUserForm = () =>{
         full_name: yup.string().optional(),
         email: yup.string().email('Email invalido').optional(),
         password: yup.string().optional(),
-        telefone: yup.number().optional()
+        telefone: yup.string().optional()
       })
     
     

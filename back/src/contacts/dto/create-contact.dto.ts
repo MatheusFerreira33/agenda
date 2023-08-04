@@ -10,8 +10,8 @@ export class CreateContactsDto {
     @IsEmail()
     @MaxLength(45)
     email:string
-
-    @IsPositive()
-    telefone:number
+ 
+    @IsString()
+    telefone:string
 
 }
