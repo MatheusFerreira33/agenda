@@ -12,14 +12,14 @@ import "react-toastify/dist/ReactToastify.css";
 export interface iInputsFormContactsUpdate {
     full_name: string | undefined;
     email: string | undefined;
-    telefone: number | undefined;
+    telefone: string| undefined;
 }
 
 export interface CardContacts{
     id:number;
     full_name: string;
     email: string;
-    telefone: number | string;
+    telefone: string;
     createdAt:string;
 }
 
@@ -32,7 +32,7 @@ export const Cards = ()=>{
     const schema = yup.object().shape({
         full_name: yup.string().optional(),
         email: yup.string().email('Email invalido').optional(),
-        telefone: yup.number().optional()
+        telefone: yup.string().optional()
       })
 
       const { register, handleSubmit, formState: { errors } } = useForm<iInputsFormContactsUpdate>({

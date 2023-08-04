@@ -16,7 +16,7 @@ model user {
   full_name String   @db.VarChar(45) 
   email     String   @unique(map: "user_email_unique") @db.VarChar(45)
   password  String   @db.VarChar(45)
-  telefone  Int
+  telefone  String   @db.Text
   contacts  contacts[]
   createdAt DateTime @default(now()) @db.Timestamp(0)
 }
@@ -25,7 +25,7 @@ model contacts {
   id        Int      @id @default(autoincrement())
   full_name String   @db.VarChar(45)
   email     String   @unique(map: "contact_email_unique") @db.VarChar(45)
-  telefone  Int
+  telefone  String   @db.Text
   user      user     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
   createdAt DateTime @default(now()) @db.Timestamp(0)

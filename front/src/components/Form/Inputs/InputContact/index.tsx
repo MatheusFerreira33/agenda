@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
 interface IFormValues {
     full_name: string;
     email: string;
-    telefone: number;
+    telefone: string;
   }
 
 

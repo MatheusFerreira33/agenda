@@ -13,14 +13,14 @@ export interface iInputs {
     full_name: string;
     email: string;
     password: string;
-    telefone: number;
+    telefone: string ;
 }
 
 export interface iUser{
     id:number;
     full_name: string;
     email: string;
-    telefone: number | string;
+    telefone: string  | string;
     createdAt:string;
 }
 
@@ -28,26 +28,26 @@ export interface iUserUpdate{
     full_name: string | undefined;
     email: string | undefined;
     password:string | undefined;
-    telefone: number| string | undefined;
+    telefone: string | string | undefined;
 }
 
 export interface iInputsFormContacts {
     full_name: string;
     email: string;
-    telefone: number;
+    telefone: string ;
 }
 
 export interface iInputsFormContactsUpdate {
     full_name?: string;
     email?: string;
-    telefone?: number;
+    telefone?:string;
 }
 
 export interface CardContacts{
     id:number;
     full_name: string;
     email: string;
-    telefone: number | string;
+    telefone: string  | string;
     createdAt:string;
 }
 
