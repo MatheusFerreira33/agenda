@@ -5,9 +5,9 @@ import {Request, Response, NextFunction} from 'express';
 import { CreateUserDto } from "src/users/dto/create-user.dto";
 
 export class checkEmailExist implements NestMiddleware{
-
+    
     prisma = new PrismaClient()
-
+    
     async use(req: Request, res: Response, next:NextFunction) {
         const {email}: CreateUserDto = req.body;
         

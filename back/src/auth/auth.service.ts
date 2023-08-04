@@ -1,8 +1,7 @@
-import { ConflictException, Injectable, Res } from "@nestjs/common";
+import { ConflictException, Injectable} from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { user } from "@prisma/client";
 import {PrismaService} from '../prisma/prisma.service';
-import {Response} from 'express';
 import {UpdateUserDto} from './dto/update-user.dto';
 
 

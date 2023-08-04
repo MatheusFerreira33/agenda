@@ -1,12 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext} from 'react';
 import {CardContainer, Card, ContainerModal, FormModal,HeaderModal,MainModal} from './style';
-import { UserContext, iInputsFormContacts } from '../../providers/UserContext';
+import { UserContext} from '../../providers/UserContext';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Input } from '../../components/Form/Inputs/InputContactUpdate';
 import { ButtonStyled } from '../../components/Button/style';
-import { api } from '../../services/api';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
@@ -26,8 +25,7 @@ export interface CardContacts{
 
 
 export const Cards = ()=>{
-    const {contacts,setModal,modal,getDatasFormContactsUpdate,getContactById,contactsUpdate,setContactsUpdate, deleteContact} = useContext(UserContext);
-    const [contactsUpdate2, setContactsUpdate2] = useState<CardContacts>(Object);
+    const {contacts,setModal,modal,getDatasFormContactsUpdate,getContactById,contactsUpdate, deleteContact} = useContext(UserContext);
 
     
 
