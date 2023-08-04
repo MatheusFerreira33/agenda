@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
 interface IFormValues {
     full_name: string | undefined;
     email: string | undefined;
-    telefone: number| undefined;
+    telefone: string| undefined;
   }
 
 

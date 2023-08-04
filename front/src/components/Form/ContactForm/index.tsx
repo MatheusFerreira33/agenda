@@ -16,7 +16,7 @@ export const RegisterForm = () =>{
     const schema = yup.object().shape({
         full_name: yup.string().required('Nome Obrigatorio'),
         email: yup.string().required('Email obrigatorio').email('Email invalido'),
-        telefone: yup.number().required('telefone obrigatorio')
+        telefone: yup.string().required('telefone obrigatorio')
       })
     
     

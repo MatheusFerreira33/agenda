@@ -15,7 +15,7 @@ export class CreateUserDto {
     @MaxLength(45)
     password:string
 
-    @IsPositive()
-    telefone:number
+    @IsString()
+    telefone:string
 
 }
